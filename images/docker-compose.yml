@@ -1,0 +1,21 @@
+version: "3.8"
+services:
+#  queuer:
+#    image: "test_image"
+#    volumes:
+#    - /Users/adif/development/adi_project/words:/tmp
+#    - /tmp/articles:/articles
+#    command: bash -c "python -u /code/assigner.py"
+
+  worker:
+    image: "test_image"
+    volumes:
+      - ${ARTICLES_DIR}:/articles
+    command: bash -c "python -u /code/reader.py"
+
+  writer:
+    image: "test_image"
+    volumes:
+      - ${WORDS_DIR}:/tmp
+#      - /Users/adif/development/amenity/words:/tmp
+    command: bash -c "python -u /code/writer.py"
