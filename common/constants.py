@@ -1,3 +1,5 @@
+# TODO: get curr path and add
+
 OPERATORS = {'OR': set.update, 'AND': set.intersection_update}
 WORDS_BASE_PATH = '../words'
 SLEEP_INTERVAL = 1
