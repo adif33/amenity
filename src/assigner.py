@@ -11,7 +11,7 @@ from ..common.constants import ARTICLES_FOLDER
 def assign(files_path):
     for filename in os.listdir(files_path):
         if filename.endswith('.json'):
-            print('Found file:', filename)
+            # print('Found file:', filename)
             QueueHelperRedisAPI.add_file_name(filename)
 
 def main():

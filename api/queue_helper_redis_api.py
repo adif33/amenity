@@ -9,6 +9,7 @@ class QueueHelperRedisAPI(object):
     conn = redis.Redis(host=host, port=port, db=db)
     files_path_queue = '.file_queue'
     words_to_flush_queue = '.words_flush_queue'
+    words_in_queue_set = '.queue_words_set'
 
     @classmethod
     def get_file_name(cls):
@@ -20,15 +21,29 @@ class QueueHelperRedisAPI(object):
 
     @classmethod
     def get_word_to_flush(cls):
-        return cls.conn.rpop(cls.words_to_flush_queue)
+        word = cls.conn.rpop(cls.words_to_flush_queue)
+        if not word:
+            return word
+
+        if cls.conn.sismember(cls.words_in_queue_set, word):
+            cls.conn.srem(cls.words_in_queue_set, word)
+
+        return word
 
     @classmethod
     def add_word_to_flush(cls, word):
-        cls.conn.lpush(cls.words_to_flush_queue, word)
+        if not cls.conn.sismember(cls.words_in_queue_set, word):
+            cls.conn.sadd(cls.words_in_queue_set, word)
+            cls.conn.lpush(cls.words_to_flush_queue, word)
+
 
     @classmethod
     def get_lock(cls, word):
         return cls.conn.lock(word)
+
+    @classmethod
+    def get_test(cls, word):
+        cls.conn.sismember()
 
 
 

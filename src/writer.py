@@ -6,9 +6,6 @@ from ..api.queue_helper_redis_api import QueueHelperRedisAPI
 from ..api.keyword_funnel_redis_api import KeywordFunnelRedisAPI
 from ..common.constants import SLEEP_INTERVAL, WORDS_FOLDER
 
-# SLEEP_INTERVAL = 1
-# ARTICLES_FOLDER = '/articles'
-# WORDS_FOLDER = '/tmp'
 
 def main_loop():
     while True:
@@ -21,7 +18,7 @@ def main_loop():
 
         articles = KeywordFunnelRedisAPI.get_all_articles_by_word(word)
         if not articles:
-            # print('no articles for word: ', word)
+            print('no articles for word: ', word)
             continue
 
         # print('in writer:', word, articles)

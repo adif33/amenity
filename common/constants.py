@@ -4,7 +4,7 @@ OPERATORS = {'OR': set.update, 'AND': set.intersection_update}
 WORDS_BASE_PATH = '../words'
 SLEEP_INTERVAL = 0.01
 ARTICLES_FOLDER = '/articles'
-MAX_ARTICLES_COUNT_IN_MEM = 50
+MAX_ARTICLES_COUNT_IN_MEM = 200
 WORDS_FOLDER = '/tmp'
 
 BASIC_PAGE = """<!DOCTYPE html>

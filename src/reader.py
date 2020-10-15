@@ -22,16 +22,13 @@ def main_loop():
         article_title, words = seperate_article_words(file_name)
 
         for word in words:
-            # QueueHelperRedisAPI.add_word_to_flush(word)
 
             while KeywordFunnelRedisAPI.get_articles_count(word) > MAX_ARTICLES_COUNT_IN_MEM:
                 time.sleep(SLEEP_INTERVAL)
 
             # print('adding:', word, article_title)
             KeywordFunnelRedisAPI.add_article_by_word(word, article_title)
-
-            if KeywordFunnelRedisAPI.get_articles_count(word) > 0:
-                QueueHelperRedisAPI.add_word_to_flush(word)
+            QueueHelperRedisAPI.add_word_to_flush(word)
 
 
 def clean_word(word):
