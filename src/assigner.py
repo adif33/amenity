@@ -2,8 +2,8 @@ import redis
 import os
 import time
 
-from api.queue_helper_redis_api import QueueHelperRedisAPI
-from common.constants import ARTICLES_FOLDER
+from ..api.queue_helper_redis_api import QueueHelperRedisAPI
+from ..common.constants import ARTICLES_FOLDER
 
 # ARTICLES_FOLDER = '/articles'
 

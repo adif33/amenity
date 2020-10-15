@@ -1,5 +1,6 @@
 import subprocess
-from src.add_articles import add_articles_from_path
+import os
+from src.server import start_server
 
 
 # TODO:
@@ -9,13 +10,17 @@ from src.add_articles import add_articles_from_path
 """
 
 def main():
-    articles_dir = '/Users/adif/development/adi_project/tests/articles'
+    # articles_dir = input('Please enter your articles directory:')
+    # start_server()
+    subprocess.Popen(['python3', 'server.py'], cwd='./src')
+    articles_dir = '/Users/adif/development/amenity/tests/articles'
+    my_env = os.environ.copy()
+    my_env["ARTICLES_DIR"] = articles_dir
     # subprocess.Popen(['docker', 'start'])
-    # subprocess.Popen(['redis-server'])
+    subprocess.run(['redis-cli', 'FLUSHALL'])
     # clean server
     # subprocess.Popen(['docker', 'build', '-t', 'test_image', '.'], cwd='./images')
-    subprocess.run(['docker-compose', 'up', '--scale', 'worker=4', '--scale', 'writer=4'], cwd='./images')
-    # add_articles_from_path(articles_dir)
+    subprocess.run(['docker-compose', 'up', '--scale', 'worker=4', '--scale', 'writer=4'], cwd='./', env=my_env)
 
 if __name__ == '__main__':
     main()

@@ -3,9 +3,9 @@ import os
 import json
 import string
 
-from api.queue_helper_redis_api import QueueHelperRedisAPI
-from api.keyword_funnel_redis_api import KeywordFunnelRedisAPI
-from common.constants import ARTICLES_FOLDER, SLEEP_INTERVAL, MAX_ARTICLES_COUNT_IN_MEM
+from ..api.queue_helper_redis_api import QueueHelperRedisAPI
+from ..api.keyword_funnel_redis_api import KeywordFunnelRedisAPI
+from ..common.constants import ARTICLES_FOLDER, SLEEP_INTERVAL, MAX_ARTICLES_COUNT_IN_MEM
 
 # SLEEP_INTERVAL = 1
 # ARTICLES_FOLDER = '/articles'

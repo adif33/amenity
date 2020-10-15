@@ -2,9 +2,9 @@ import time
 import os
 import json
 
-from api.queue_helper_redis_api import QueueHelperRedisAPI
-from api.keyword_funnel_redis_api import KeywordFunnelRedisAPI
-from common.constants import ARTICLES_FOLDER, SLEEP_INTERVAL, WORDS_FOLDER
+from ..api.queue_helper_redis_api import QueueHelperRedisAPI
+from ..api.keyword_funnel_redis_api import KeywordFunnelRedisAPI
+from ..common.constants import SLEEP_INTERVAL, WORDS_FOLDER
 
 # SLEEP_INTERVAL = 1
 # ARTICLES_FOLDER = '/articles'
