@@ -20,6 +20,9 @@ def main_loop():
             continue
 
         articles = KeywordFunnelRedisAPI.get_all_articles_by_word(word)
+        if not articles:
+            # print('no articles for word: ', word)
+            continue
 
         # print('in writer:', word, articles)
 
