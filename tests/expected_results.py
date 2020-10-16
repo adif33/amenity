@@ -1,0 +1,7 @@
+
+
+QUERY_RESULTS = {}
+
+QUERY_RESULTS['keywords=or,and&operator=OR'] = b'<!DOCTYPE html>\n<html>\n<body>\n<pre>\nResidential buildings collapse in China, people trapped: Report\nAlex Galchenyuk ice as Canadiens\' injury trouble runs its course\nBeyonc\xc3\xa9 and Blue Ivy, Kim and North, and More of the Best Mommy-and-Me Beauty\nGOP Senator says Donald Trump\'s executive order has "the appearance of religious ban" | Mic\nSubscribe to read\nExtremely Satisfying Video Tutorials on How to Create Realistic Models and Scenery\nFor Black History Month, these cute black kids take Trump\'s \'alternate facts\' to task | Mic\nMatthew McConaughey Says Americans Should \'Embrace\' Donald Trump as President\nHere are The Funniest Reaction Memes To Beyonce\'s Pregnancy | Angie Martinez | Power 105.1 FM\n&apos;Donald Trump. Everything that he did,&apos; among reasons cited by inmates in Delaware hostage situation - Chicago\n</pre>\n</body>\n</html>'
+
+QUERY_RESULTS['keywords=or,and&operator=AND'] = b'<!DOCTYPE html>\n<html>\n<body>\n<pre>\nGOP Senator says Donald Trump\'s executive order has "the appearance of religious ban" | Mic\nHere are The Funniest Reaction Memes To Beyonce\'s Pregnancy | Angie Martinez | Power 105.1 FM\n&apos;Donald Trump. Everything that he did,&apos; among reasons cited by inmates in Delaware hostage situation - Chicago\n</pre>\n</body>\n</html>'

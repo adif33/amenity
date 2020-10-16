@@ -1,8 +1,16 @@
 import subprocess
 import os
 import shutil
+import requests
 
 from common.constants import WORDS_BASE_PATH
+from tests.expected_results import QUERY_RESULTS
+
+def check_request():
+    for query in QUERY_RESULTS:
+        res = requests.get('http://localhost:5000/search?{}'.format(query))
+        if res.content != QUERY_RESULTS[query]:
+            return False
 
 
 def main():
@@ -40,4 +48,6 @@ def main():
             p.kill()
 
 if __name__ == '__main__':
-    main()
+    # main()
+    check_request()
+    print('finish')

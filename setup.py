@@ -3,19 +3,29 @@ import os
 from common.constants import WORDS_BASE_PATH
 
 
+
 # TODO:
 """
-- mount articles for reader and assigner on the fly
++ check url pattern
+- print only on change
+- finish setup + test
+- check that it works from other directories
+- PEP8
+- README
 
 """
 
 def main():
     childprocs = []
     try:
-        # articles_dir = input('Please enter your articles directory:')
-        articles_dir = '/Users/adif/development/amenity/tests/articles'
+        # articles_dir = input('Please enter your articles directory: ')
+        articles_dir = '/private/tmp/out/'
+        articles_dir = './tests/articles'
 
         words_folder = './words'
+
+        subprocess.run(['python3', 'pip', 'install', '-r', './requierments'])
+
         for filename in os.listdir(words_folder):
             file_path = os.path.join(words_folder, filename)
 
