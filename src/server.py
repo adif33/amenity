@@ -22,7 +22,6 @@ def get_handler():
         return BASIC_PAGE.format(input_errors)
 
     articles = get_articles(keywords, operator)
-    print(keywords, operator)
     return BASIC_PAGE.format(articles)
 
 

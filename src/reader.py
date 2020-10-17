@@ -12,12 +12,19 @@ from ..common.constants import ARTICLES_FOLDER, SLEEP_INTERVAL, MAX_ARTICLES_COU
 # MAX_ARTICLES_COUNT_IN_MEM = 50
 
 def main_loop():
+    lastly_seen_file = True
+
     while True:
         file_name = QueueHelperRedisAPI.get_file_name()
         if not file_name:
-            print('Reader waiting for new file')
+            if lastly_seen_file:
+                lastly_seen_file = False
+                print('Reader waiting for new file')
+
             time.sleep(SLEEP_INTERVAL)
             continue
+
+        lastly_seen_file = True
 
         article_title, words = seperate_article_words(file_name)
 
