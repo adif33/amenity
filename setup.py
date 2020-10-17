@@ -2,22 +2,6 @@ import subprocess
 import os
 from common.constants import SRC_BASE_PATH, PROJECT_BASE_PATH, WORKERS_COUNT, WORDS_BASE_PATH
 
-# TODO:
-"""
-+ check url pattern
-+ print only on change
-+ finish setup + test
-+ check that it works from other directories
-+ make services num dynamic
-+ put articles dir in main_test
-+ PEP8
-+ README
-- add more input checks + robust
-- add working print
-- change prints and document
-
-"""
-
 
 def main():
     articles_dir = input('Please enter your articles directory: ')
@@ -47,9 +31,7 @@ def setup(articles_dir):
         my_env["ARTICLES_DIR"] = articles_dir
         my_env["FLASK_ENV"] = 'development'
 
-
         childprocs.append(subprocess.Popen(['python3', 'server.py'], cwd=SRC_BASE_PATH, env=my_env))
-
 
         childprocs.append(subprocess.run(['docker', 'build', '-t', 'test_image', '.'],
                                          cwd=PROJECT_BASE_PATH))
