@@ -70,5 +70,3 @@ def check_request():
 
 if __name__ == '__main__':
     main()
-    # check_request()
-    print('finish')

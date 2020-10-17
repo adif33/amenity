@@ -8,7 +8,7 @@ from common.constants import WORDS_BASE_PATH
 """
 + check url pattern
 + print only on change
-- finish setup + test
++ finish setup + test
 - check that it works from other directories
 - make services num dynamic
 - add more input checks + robust
