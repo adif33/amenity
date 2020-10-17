@@ -1,6 +1,5 @@
 import time
 import os
-import json
 
 from ..api.queue_helper_redis_api import QueueHelperRedisAPI
 from ..api.keyword_funnel_redis_api import KeywordFunnelRedisAPI
@@ -39,12 +38,9 @@ def write_articles_to_word(word, articles):
     if os.path.exists(WORDS_FOLDER):
         try:
             with open(word_file_path, 'a+b') as f:
-                # print('writing:', word, [article + b'\n' for article in articles])
                 f.writelines(article + b'\n' for article in articles)
-        except Exception as e:
-            print('##### Exception')
-            print(e)
-            print(word_file_path)
+        except FileNotFoundError as e:
+            return
 
 
 def main():

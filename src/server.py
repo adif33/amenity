@@ -8,7 +8,6 @@ from common.constants import OPERATORS, WORDS_BASE_PATH, BASIC_PAGE
 import string
 import os
 
-
 app = Flask(__name__)
 
 
@@ -43,6 +42,7 @@ def check_search_args(keywords, operator):
             if c not in allowed_chars:
                 return 'Please use only English characters and numbers'
 
+
 def get_articles_by_word(word):
     word_path = os.path.join(WORDS_BASE_PATH, word)
 
@@ -51,6 +51,7 @@ def get_articles_by_word(word):
 
     with open(word_path, 'r') as f:
         return {article.rstrip('\n') for article in f.readlines()}
+
 
 def get_articles(keywords, operator):
     operator_func = OPERATORS[operator]
@@ -77,5 +78,3 @@ def start_server():
 
 if __name__ == '__main__':
     app.run()
-    # app.run(host= '0.0.0.0')
-    # get_articles('', 'AND')

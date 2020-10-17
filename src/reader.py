@@ -7,9 +7,6 @@ from ..api.queue_helper_redis_api import QueueHelperRedisAPI
 from ..api.keyword_funnel_redis_api import KeywordFunnelRedisAPI
 from ..common.constants import ARTICLES_FOLDER, SLEEP_INTERVAL, MAX_ARTICLES_COUNT_IN_MEM
 
-# SLEEP_INTERVAL = 1
-# ARTICLES_FOLDER = '/articles'
-# MAX_ARTICLES_COUNT_IN_MEM = 50
 
 def main_loop():
     lastly_seen_file = True
@@ -33,7 +30,6 @@ def main_loop():
             while KeywordFunnelRedisAPI.get_articles_count(word) > MAX_ARTICLES_COUNT_IN_MEM:
                 time.sleep(SLEEP_INTERVAL)
 
-            # print('adding:', word, article_title)
             KeywordFunnelRedisAPI.add_article_by_word(word, article_title)
             QueueHelperRedisAPI.add_word_to_flush(word)
 
@@ -67,5 +63,4 @@ def main():
 
 
 if __name__ == '__main__':
-    print('start')
     main_loop()

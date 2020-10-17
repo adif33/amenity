@@ -1,7 +1,6 @@
 import subprocess
 import os
-from common.constants import WORDS_BASE_PATH, SRC_BASE_PATH, PROJECT_BASE_PATH, WORKERS_COUNT
-
+from common.constants import SRC_BASE_PATH, PROJECT_BASE_PATH, WORKERS_COUNT
 
 # TODO:
 """
@@ -10,14 +9,15 @@ from common.constants import WORDS_BASE_PATH, SRC_BASE_PATH, PROJECT_BASE_PATH, 
 + finish setup + test
 + check that it works from other directories
 + make services num dynamic
++ put articles dir in main_test
 - add more input checks + robust
 - add working print
 - change prints and document
-- put articles dir in main_test
 - PEP8
 - README
 
 """
+
 
 def main():
     articles_dir = input('Please enter your articles directory: ')
@@ -41,7 +41,6 @@ def setup(articles_dir):
 
     childprocs = []
     try:
-        workers_count = 4
         childprocs.append(subprocess.Popen(['python3', 'server.py'], cwd=SRC_BASE_PATH))
 
         my_env = os.environ.copy()
@@ -51,13 +50,15 @@ def setup(articles_dir):
         childprocs.append(subprocess.run(['docker', 'build', '-t', 'test_image', '.'],
                                          cwd=PROJECT_BASE_PATH))
 
-        subprocess.run(['docker-compose', 'up', '--scale', 'worker={}'.format(WORKERS_COUNT), '--scale', 'writer={}'.format(WORKERS_COUNT)],
+        subprocess.run(['docker-compose', 'up', '--scale', 'worker={}'.format(WORKERS_COUNT), '--scale',
+                        'writer={}'.format(WORKERS_COUNT)],
                        cwd=PROJECT_BASE_PATH, env=my_env)
 
     finally:
         for p in childprocs:
             if isinstance(p, subprocess.Popen):
                 p.terminate()
+
 
 if __name__ == '__main__':
     main()

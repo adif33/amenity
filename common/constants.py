@@ -1,7 +1,5 @@
 import os
 
-# TODO: get curr path and add
-
 CONSTANTS_FILE_PATH = os.path.realpath(os.path.dirname(__file__))
 
 SLEEP_INTERVAL = 0.01

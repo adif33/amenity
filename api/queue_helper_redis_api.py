@@ -2,7 +2,6 @@ import redis
 
 
 class QueueHelperRedisAPI(object):
-    # host = "localhost"
     host = "host.docker.internal"
     port = 6379
     db = 0
@@ -37,14 +36,6 @@ class QueueHelperRedisAPI(object):
             cls.conn.sadd(cls.words_in_queue_set, word)
             cls.conn.lpush(cls.words_to_flush_queue, word)
 
-
     @classmethod
     def get_lock(cls, word):
         return cls.conn.lock(word)
-
-    @classmethod
-    def get_test(cls, word):
-        cls.conn.sismember()
-
-
-
