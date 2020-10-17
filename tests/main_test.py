@@ -2,17 +2,20 @@ import subprocess
 import os
 import time
 import requests
+import sys
 
-from common.constants import WORDS_BASE_PATH, REQUIREMENTS_BASE_PATH, SRC_BASE_PATH
+sys.path.append(os.path.abspath(os.path.dirname(__file__) + '/../'))
+from common.constants import WORDS_BASE_PATH, REQUIREMENTS_BASE_PATH, SRC_BASE_PATH, PROJECT_BASE_PATH, \
+    TEST_ARTICLES_BASE_PATH, WORKERS_COUNT
 from tests.expected_results import QUERY_RESULTS
 
 
 SLEEP_BEFORE_REQUESTS = 25
 
 def main():
-    articles_dir = '/Users/adif/development/amenity/tests/articles'
+    # articles_dir = '/Users/adif/development/amenity/tests/articles'
 
-    subprocess.run(['python3', 'pip', 'install', '-r', REQUIREMENTS_BASE_PATH])
+    subprocess.run(['python3', '-m', 'pip', 'install', '-r', REQUIREMENTS_BASE_PATH])
     for filename in os.listdir(WORDS_BASE_PATH):
         file_path = os.path.join(WORDS_BASE_PATH, filename)
 
@@ -27,14 +30,15 @@ def main():
     childprocs = []
 
     try:
-        childprocs.append(subprocess.Popen(['python3', 'server.py'], cwd=SRC_BASE_PATH))
-
         my_env = os.environ.copy()
-        my_env["ARTICLES_DIR"] = articles_dir
+        my_env["ARTICLES_DIR"] = TEST_ARTICLES_BASE_PATH
         my_env["WORDS_DIR"] = WORDS_BASE_PATH
+        my_env["FLASK_ENV"] = 'development'
+        childprocs.append(subprocess.Popen(['python3', 'server.py'], cwd=SRC_BASE_PATH, env=my_env))
 
-        childprocs.append(subprocess.run(['docker', 'build', '-t', 'test_image', '.'], cwd='../'))
-        subprocess.Popen(['docker-compose', 'up', '--scale', 'worker=4', '--scale', 'writer=4'], cwd='./', env=my_env)
+        print(PROJECT_BASE_PATH)
+        childprocs.append(subprocess.run(['docker', 'build', '-t', 'test_image', '.'], cwd=PROJECT_BASE_PATH))
+        subprocess.Popen(['docker-compose', 'up', '--scale', 'worker={}'.format(WORKERS_COUNT), '--scale', 'writer={}'.format(WORKERS_COUNT)], cwd='./', env=my_env)
 
         time.sleep(SLEEP_BEFORE_REQUESTS)
 

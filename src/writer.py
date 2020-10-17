@@ -37,9 +37,14 @@ def main_loop():
 def write_articles_to_word(word, articles):
     word_file_path = os.path.join(WORDS_FOLDER, word.decode('ascii'))
     if os.path.exists(WORDS_FOLDER):
-        with open(word_file_path, 'ab') as f:
-            # print('writing:', word, [article + b'\n' for article in articles])
-            f.writelines(article + b'\n' for article in articles)
+        try:
+            with open(word_file_path, 'a+b') as f:
+                # print('writing:', word, [article + b'\n' for article in articles])
+                f.writelines(article + b'\n' for article in articles)
+        except Exception as e:
+            print('##### Exception')
+            print(e)
+            print(word_file_path)
 
 
 def main():

@@ -1,12 +1,13 @@
-from flask import Flask
-from flask import request
+from flask import Flask, request
+import sys
+import os
+
+sys.path.append(os.path.abspath(os.path.dirname(os.path.realpath(__file__)) + '/../'))
 from common.constants import OPERATORS, WORDS_BASE_PATH, BASIC_PAGE
 
 import string
 import os
 
-
-# OPERATORS = {'OR': set.update, 'AND': set.intersection_update}
 
 app = Flask(__name__)
 
