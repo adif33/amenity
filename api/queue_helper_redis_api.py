@@ -31,7 +31,6 @@ class QueueHelperRedisAPI(object):
 
     @classmethod
     def add_word_to_flush(cls, word):
-        # print('added word in add_word_to_flush: ', word)
         if not cls.conn.sismember(cls.words_in_queue_set, word):
             cls.conn.sadd(cls.words_in_queue_set, word)
             cls.conn.lpush(cls.words_to_flush_queue, word)

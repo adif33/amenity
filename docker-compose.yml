@@ -4,7 +4,7 @@ services:
     image: "test_image"
     volumes:
     - ${ARTICLES_DIR}:/articles
-    command: bash -c "echo ${ARTICLES_DIR} && python -u -m code.src.assigner"
+    command: bash -c "python -u -m code.src.assigner"
 
   worker:
     image: "test_image"
@@ -16,5 +16,4 @@ services:
     image: "test_image"
     volumes:
       - ${WORDS_DIR}:/tmp
-#      - /Users/adif/development/amenity/words:/tmp
     command: bash -c "python -u -m code.src.writer"

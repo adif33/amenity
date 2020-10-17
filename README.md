@@ -14,7 +14,11 @@ Docker and Redis are required.
 There is a test script:
 >/test/main_test.py
 
-It will make the setup and preprocessing on some sample articles and then run some different test scenarios queries, as described in /test/expected_results.py.
+It will make the setup and preprocessing on some sample articles and then run some different test scenarios queries, as described in:
+>/test/expected_results.py
+
+A timer is set after the preprocessing starts for the queries. it's possible that more time will be needed dut to initial Docker setup and other envierment related reasons.
+It is possible to increase the time in *SLEEP_BEFORE_REQUESTS* variable.
 
 For normal use: 
 >/setup.py
