@@ -5,6 +5,9 @@ from ..common.constants import ARTICLES_FOLDER
 
 
 def assign(files_path):
+    """
+    add new files to the queue
+    """
     for filename in os.listdir(files_path):
         if filename.endswith('.json'):
             QueueHelperRedisAPI.add_file_name(filename)

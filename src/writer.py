@@ -7,6 +7,9 @@ from ..common.constants import SLEEP_INTERVAL, WORDS_FOLDER
 
 
 def main_loop():
+    """
+    wait for words with new articles to update their appropriate file
+    """
     lastly_seen_word = True
 
     while True:
@@ -48,5 +51,4 @@ def main():
 
 
 if __name__ == '__main__':
-    print('start')
     main_loop()

@@ -9,6 +9,9 @@ from ..common.constants import ARTICLES_FOLDER, SLEEP_INTERVAL, MAX_ARTICLES_COU
 
 
 def main_loop():
+    """
+    wait for new articles to procces and add the article namr to each of the article word's queue
+    """
     lastly_seen_file = True
 
     while True:
@@ -35,6 +38,9 @@ def main_loop():
 
 
 def clean_word(word):
+    """
+    removes unwanted characters from a word
+    """
     printable = string.printable[:36]
     word = ''.join(filter(lambda c: c in printable, word))
     word = word.lower()
@@ -42,6 +48,9 @@ def clean_word(word):
 
 
 def seperate_article_words(file_name):
+    """
+    Read the article file and return the name and words
+    """
     file_path = os.path.join(ARTICLES_FOLDER, file_name.decode('ascii'))
     if not os.path.exists(file_path):
         return None, []

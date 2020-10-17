@@ -26,6 +26,9 @@ def get_handler():
 
 
 def check_search_args(keywords, operator):
+    """
+    check that the format is right
+    """
     if not keywords or not operator:
         return 'Bad request format'
 
